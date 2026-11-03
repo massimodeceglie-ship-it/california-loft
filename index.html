@@ -149,7 +149,7 @@ document.addEventListener('click',function(e){
 });
 $('#sh').addEventListener('click',function(e){if(e.target.id==='sh')close()});
 draw();
-var SB_URL='INCOLLA_QUI_PROJECT_URL',SB_KEY='INCOLLA_QUI_ANON_KEY';
+var SB_URL='https://mhuyqtjivjwamwsoupob.supabase.co',SB_KEY='sb_publishable_-Potq4zstqYbsfEyj7b3rw_cDfahlUs';
 var sb=supabase.createClient(SB_URL,SB_KEY);
 async function loadG(){try{var m=cur.getFullYear()+'-'+(cur.getMonth()+1);var r=await fetch('/.netlify/functions/gcal?month='+m);var j=await r.json();Object.assign(gb,j.busy||{});draw()}catch(e){}}
 async function loadS(){var r=await sb.from('slots').select('id');slots={};(r.data||[]).forEach(function(x){slots[x.id]=true});draw()}
