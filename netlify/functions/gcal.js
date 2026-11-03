@@ -26,5 +26,5 @@ exports.handler = async (e) => {
     for (let d = 1; d <= n; d++) { const k = `${y}-${p2(m)}-${p2(d)}`;
       for (const h of ['am', 'pm']) { const ws = at(k, HALF[h][0]), we = at(k, HALF[h][1]); if (ev.some(([s, f]) => s < we && f > ws)) busy[k + '_' + h] = true; } }
     return { statusCode: 200, headers: J, body: JSON.stringify({ busy }) };
-  } catch (err) { return { statusCode: 200, headers: J, body: JSON.stringify({ busy: {}, error: true }) }; }
+  } catch (err) { console.error('GCAL ERRORE:', err && err.message); return { statusCode: 200, headers: J, body: JSON.stringify({ busy: {}, error: true }) }; }
 };
