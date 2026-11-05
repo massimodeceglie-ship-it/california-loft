@@ -132,7 +132,7 @@ function list(){
         if(ok){
           await sb.from('slots').upsert((r.fascia==='full'?['am','pm']:[r.fascia]).map(function(x){return {id:r.date+'_'+x,date:r.date,half:x}}));
           var s=(await sb.auth.getSession()).data.session;
-          fetch('/.netlify/functions/gcal',{method:'POST',body:JSON.stringify({token:s.access_token,date:r.date,fascia:r.fascia,name:r.name,phone:r.phone,email:r.email,notes:r.notes})}).catch(function(){});
+                    try{var gr=await fetch('/.netlify/functions/gcal',{method:'POST',body:JSON.stringify({token:s.access_token,date:r.date,fascia:r.fascia,name:r.name,phone:r.phone,email:r.email,notes:r.notes})});var gj=await gr.json();alert(gj.ok?'Evento scritto su Google Calendar.':'Calendario NON aggiornato: '+(gj.msg||('errore '+gr.status)));}catch(e){alert('Calendario NON aggiornato: '+e.message);}
         }
         loadS();loadR()};row.appendChild(bt)});
     el.appendChild(t);el.appendChild(row);box.appendChild(el)});
